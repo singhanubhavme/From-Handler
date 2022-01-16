@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.home,
+.register,
+.contact {
+    min-height: 65vh;
+}
+
+.nav {
+    justify-content: center;
+}
+
+.how-text,
+.steps {
+    font-size: 1.3em;
+}
+
+body {
+    background: rgba(0, 0, 0, .7) url("images/bg.jpg");
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+.logo {
+    border-radius: 10px;
+}
+
+.active {
+    background-color: #24A19C !important;
+}
+
+.active:hover {
+    cursor: pointer;
+    background-color: #1a8a86 !important;
+}

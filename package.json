@@ -1,0 +1,20 @@
+{
+  "name": "form-handler",
+  "version": "1.0.0",
+  "description": "Now embed forms in static website without any backend",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anubhav Singh",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "dotenv": "^12.0.3",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6",
+    "nodemailer": "^6.7.2"
+  }
+}

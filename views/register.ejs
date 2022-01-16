@@ -1,0 +1,77 @@
+<%- include("partials/header.ejs") -%>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-signin {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="text"],
+    .form-signin input[type="url"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .form-signin input[type="url"] {
+        margin-top: 12px;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+<body class="text-center">
+    <main class="form-signin register">
+        <form action="/register" method="post">
+            <img class="mb-4" src="images/logo.png" alt="" width="72" height="auto">
+            <h1 class="h3 mb-3 fw-normal text-light">Register</h1>
+
+            <div class="form-floating">
+                <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username">
+                <label for="floatingInput">Username</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" name="email" id="floatingInput" placeholder="Email">
+                <label for="floatingInput">Email</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="url" class="form-control" data-toggle="tooltip" data-placement="left"
+                    title="Write the URL you want the user to redirect after successfull form submission, leave blank for default. (Include https:// or http:// in URL)"
+                    name="redirecturl" id="floatingInput" placeholder="Redirect URL">
+                <label for="floatingInput">Redirect URL</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+        </form>
+    </main>
+
+    <%- include("partials/footer.ejs") -%>
