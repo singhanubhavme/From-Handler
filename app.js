@@ -98,7 +98,7 @@ app.post("/register", (req, res) => {
         username: username
     }, (err, docs) => {
         if (docs.length > 0) {
-            res.send("failed");
+            res.render("failed");
         } else {
             if (redirecturl === "") {
                 redirecturl = "https://form-handler.singhanubhav.me/success";
@@ -112,7 +112,7 @@ app.post("/register", (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    res.render("success", {
+                    res.render("url", {
                         username
                     });
                 }
@@ -151,7 +151,7 @@ app.post("/form/:user", (req, res) => {
             }
             mailData += `---------------------------<br>`;
             sendMail(mailData, docs.email, req.params.user);
-            res.redirect(docs.redirecturl);
+            res.render(docs.redirecturl);
         }
     })
 })
