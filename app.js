@@ -77,6 +77,10 @@ app.get("/failed", (req, res) => {
     res.render("failed");
 })
 
+app.get("/url", (req, res)=>{
+    res.render("url");
+})
+
 app.post("/contact", (req, res) => {
     const data = Object.entries(req.body);
     let mailData = `Contact Form Submission <br>---------------------------<br>`;
@@ -151,7 +155,7 @@ app.post("/form/:user", (req, res) => {
             }
             mailData += `---------------------------<br>`;
             sendMail(mailData, docs.email, req.params.user);
-            res.render(docs.redirecturl);
+            res.redirect(docs.redirecturl);
         }
     })
 })
