@@ -1,16 +1,30 @@
 <%- include("partials/header.ejs") -%>
 
-<div class="px-4 py-5 my-5 text-center text-light">
-    <img class="d-block mx-auto mb-4" src="images/logo.png" alt="" width="72" height="72">
-    <h1 class="display-5 fw-bold">Success</h1>
-    <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4 display-6">Registered.</p>
-        <p class="lead mb-4">Your URL is <br><br> https://form-handler.singhanubhav.me/form/<%= username %> </p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" onclick="history.back()"
-                class="btn btn-light text-dark btn-outline-secondary btn-lg px-4">Go Back</button>
-        </div>
+<style>
+ 
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  
+      
+  <div class="container">
+<div class="p-5 mb-4 bg-transparent text-white rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold text-success">Success, Form Register</h1>
+      <p class="col-md-8 fs-4"><span class="fw-bold">Form Title</span> : <%= docs.formTitle %></p>
+      <p class="col-md-8 fs-4"><span class="fw-bold">Form Unique ID</span> : <%= docs.formid %></p>
+      <p class="col-md-8 fs-4"><span class="fw-bold">Redirect URL</span> :<br> <%= docs.redirectUrl %></p>
+      <p class="col-md-8 fs-4"><span class="fw-bold">Form Action URL</span> :<br> https://localhost/form/<%= docs.username %>/<%= docs.formid %></p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" onclick="history.back()"
+            class="btn btn-light text-dark btn-outline-secondary btn-lg px-4">Go Back</button>
     </div>
+    </div>
+  </div>
 </div>
 
 <%- include("partials/footer.ejs") -%>

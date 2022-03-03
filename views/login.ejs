@@ -23,17 +23,11 @@
 
 </style>
 
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
-
 <body class="text-center">
     <main class="form-signin register">
-        <form action="/register" method="post">
+        <form action="/login" method="post">
             <img class="mb-4" src="images/logo.png" alt="" width="72" height="auto">
-            <h1 class="h3 mb-3 fw-normal text-light">Register</h1>
+            <h1 class="h3 mb-3 fw-normal text-light">Login</h1>
 
             <div class="form-floating">
                 <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username">
@@ -42,26 +36,11 @@
 
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password"
-                    required>
+                    >
                 <label for="floatingPassword">Password</label>
             </div>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Your Name" required>
-                <label for="floatingInput">Name</label>
-            </div>
 
-            <div class="form-floating">
-                <input type="email" class="form-control" name="email" id="floatingInput" placeholder="Email">
-                <label for="floatingInput">Email Address</label>
-            </div>
-
-            <div class="form-floating">
-                <input type="text" class="form-control" name="phoneNum" id="floatingInput"
-                    placeholder="Your Phone Number" required>
-                <label for="floatingInput">Phone Number</label>
-            </div>
-
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
         </form>
     </main>
 
