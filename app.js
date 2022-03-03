@@ -42,6 +42,7 @@ app.use((req, res, next) => {
     res.locals.url = req.url;
     if (!req.session.user_id) {
         res.locals.currentUser = "";
+        res.locals.currentUsername = "";
         next();
     } else {
         res.locals.currentUser = req.session.user_id;
@@ -104,6 +105,10 @@ app.get("/login", (req, res) => {
     res.render("login");
 })
 
+app.get("/message", (req, res)=>{
+    res.render("message");
+})
+
 app.get("/failed", (req, res) => {
     res.render("failed");
 })
@@ -115,7 +120,8 @@ app.get("/url", requireLogin, (req, res) => {
             res.render("url", { username: docs.username, formids: docs.formsid });
         }
         else {
-            res.send("something wrong in /url");
+            res.render("message", {mgscode: "1"});
+            // res.send("something wrong in /url");
         }
     })
 })
@@ -131,7 +137,8 @@ app.post("/login", async (req, res) => {
         delete req.session.returnTo;
         res.redirect(redirectUrl);
     } else {
-        res.send("Incorrent usernam/password")
+        res.render("message", {mgscode: "2"});
+        // res.send("Incorrent usernam/password")
     }
 })
 
@@ -157,7 +164,8 @@ app.post("/register", (req, res) => {
     }
     User.find({ username: username }, async (err, docs) => {
         if (docs.length) {
-            res.send("user already registered");
+            res.render("message", {mgscode: "3"});
+            // res.send("user already registered");
         } else {
             const user = new User({
                 username, password, name, email, phoneNum, isAdmin
@@ -220,9 +228,11 @@ app.post("/form/delete/:fid", (req, res) => {
     console.log(fid);
     Form.findOneAndDelete({ formid: fid }, (err, docs) => {
         if (!err) {
-            res.send("form deleted");
+            res.render("message", {mgscode: "4"});
+            // res.send("form deleted");
         } else {
-            res.send("cannot delete the form");
+            res.render("message", {mgscode: "5"});
+            // res.send("cannot delete the form");
         }
     })
 })
@@ -290,7 +300,10 @@ app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 })
-app.get("*", (req, res) => res.send("Error 404"));
+app.get("*", (req, res) => {
+    res.render("message", {mgscode: "6"});
+    // res.send("Error 404")
+});
 
 app.listen(3000, () => {
     console.log("On Port 3000!!");

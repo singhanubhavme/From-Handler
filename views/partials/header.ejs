@@ -34,51 +34,58 @@
         </li>
         <li class="nav-item"><a href="/contact" class="px-4 nav-link text-light item-3">Contact</a></li>
         <% if(currentUser != ""){ %>
-          <li class="nav-item"><a href="/create-forms" class="px-4 nav-link text-light item-4">Create Forms</a></li>
-          <li class="nav-item"><a href="/form/<%= currentUsername %>" class="px-4 nav-link text-light item-5">My Forms</a></li>
+        <li class="nav-item"><a href="/create-forms" class="px-4 nav-link text-light item-4">Create Forms</a></li>
+        <li class="nav-item"><a href="/form/<%= currentUsername %>" class="px-4 nav-link text-light item-5">My Forms</a>
+        </li>
         <li class="nav-item"><a href="/logout" class="px-4 nav-link text-light">Logout</a></li>
         <% } else { %>
-          <li class="nav-item"><a href="/login" class="px-4 nav-link text-light item-6">Login</a></li>
-          <li class="nav-item"><a href="/register" class="px-4 nav-link text-light item-7">Register</a></li>
+        <li class="nav-item"><a href="/login" class="px-4 nav-link text-light item-6">Login</a></li>
+        <li class="nav-item"><a href="/register" class="px-4 nav-link text-light item-7">Register</a></li>
         <% } %>
-        
-        
-        
+
+
+
         <%  if(url === "/") { %>
         <script>
-          document.querySelector(".item-1, .item-2, .item-3, .item-4 .item-5, .item-6, .item-7").classList.remove("active");
+          document.querySelector(".item-1, .item-2, .item-3, .item-4 .item-5, .item-6, .item-7").classList.remove(
+            "active");
           document.querySelector(".item-1").classList.add("active");
         </script>
         <%  } else if(url === "/how-to-use") { %>
         <script>
-          document.querySelector(".item-1, .item-2, .item-3, .item-4, .item-5, .item-6, .item-7").classList.remove("active");
+          document.querySelector(".item-1, .item-2, .item-3, .item-4, .item-5, .item-6, .item-7").classList.remove(
+            "active");
           document.querySelector(".item-2").classList.add("active");
         </script>
         <%  } else if(url === "/contact") { %>
         <script>
-          document.querySelector(".item-1, .item-2, .item-3, .item-4, .item-5, .item-6, .item-7").classList.remove("active");
+          document.querySelector(".item-1, .item-2, .item-3, .item-4, .item-5, .item-6, .item-7").classList.remove(
+            "active");
           document.querySelector(".item-3").classList.add("active");
         </script>
         <% } else if(url === "/create-forms") { %>
-          <script>
-            document.querySelector(".item-1, .item-2, .item-3, item-4, .item-5, .item-6, .item-7").classList.remove("active");
-            document.querySelector(".item-4").classList.add("active");
-          </script>
-          <% } else if(url === "/login") { %>
-          <script>
-            document.querySelector(".item-1, .item-2, .item-3, item-4, .item-5, .item-6, .item-7").classList.remove("active");
-            document.querySelector(".item-6").classList.add("active");
-          </script>
-          <% } else if(url === "/register") { %>
-          <script>
-            document.querySelector(".item-1, .item-2, .item-3, item-4, .item-5, .item-6, .item-7").classList.remove("active");
-            document.querySelector(".item-7").classList.add("active");
-          </script>
-        <% } else { %>
-          <script>
-            document.querySelector(".item-1, .item-2, .item-3, item-4, .item-6, .item-7").classList.remove("active");
-            document.querySelector(".item-5").classList.add("active");
-          </script>
+        <script>
+          document.querySelector(".item-1, .item-2, .item-3, item-4, .item-5, .item-6, .item-7").classList.remove(
+            "active");
+          document.querySelector(".item-4").classList.add("active");
+        </script>
+        <% } else if(url === "/login") { %>
+        <script>
+          document.querySelector(".item-1, .item-2, .item-3, item-4, .item-5, .item-6, .item-7").classList.remove(
+            "active");
+          document.querySelector(".item-6").classList.add("active");
+        </script>
+        <% } else if(url === "/register") { %>
+        <script>
+          document.querySelector(".item-1, .item-2, .item-3, item-4, .item-5, .item-6, .item-7").classList.remove(
+            "active");
+          document.querySelector(".item-7").classList.add("active");
+        </script>
+        <% } else if(url !== "/message") { %>
+        <script>
+          document.querySelector(".item-1, .item-2, .item-3, item-4, .item5, .item-6, .item-7").classList.remove("active");
+          document.querySelector(".item-5").classList.add("active");
+        </script>
         <% } %>
       </ul>
     </header>
