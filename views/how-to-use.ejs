@@ -2,8 +2,17 @@
 <script src="/rainbow-custom.min.js"></script>
 <link rel="stylesheet" href="/code-black.css">
 <style>
-    li {
-        padding: 0.2em !important;
+    pre {
+        font-size: 1em !important;
+    }
+
+    .dotted-hr {
+        border-style: none;
+        width: 7%;
+        border-top: 7px dotted white;
+        margin: auto;
+        background-color: transparent;
+        padding: 1em;
     }
 </style>
 <div class="text-light container px-4">
@@ -15,7 +24,8 @@
     <ol class="steps">
         <li><a class="btn text-white btn-success" href="/login">Register/Login</a> on this websites.</li>
         <li>Go on <a class="btn text-white btn-success" href="/create-forms">Create Forms</a>.</li>
-        <li>Enter form title and redirection URL(leave blank for <a class="btn btn-success text-white" href="/success">default</a>).</li>
+        <li>Enter form title and redirection URL(leave blank for <a class="btn btn-success text-white"
+                href="/success">default</a>).</li>
         <li>Redirection URL is the URL redirected to, after successfull form submittion on your static website.</li>
         <li>Click on Create Form.</li>
         <li>Save the form action URL given to you, which has your username and unique form id.</li>
@@ -26,6 +36,8 @@
         <li>If you get stuck somewhere just send a message on <a class="btn text-white btn-success"
                 href="/contact">Contact</a> page</li>
     </ol>
+    <br>
+    <hr class="dotted-hr">
     <h2>Example of the code that you have to use.</h2>
     <h5>Replace /form-handler with the url you copied from step 6, and change the form according to your needs.</h5>
     <pre>

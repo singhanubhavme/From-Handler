@@ -47,7 +47,7 @@ app.use((req, res, next) => {
     } else {
         res.locals.currentUser = req.session.user_id;
         const userid = req.session.user_id;
-        User.findById(userid, (err, docs)=>{
+        User.findById(userid, (err, docs) => {
             res.locals.currentUsername = docs.username;
             next();
         })
@@ -105,12 +105,26 @@ app.get("/login", (req, res) => {
     res.render("login");
 })
 
-app.get("/message", (req, res)=>{
+app.get("/message", (req, res) => {
     res.render("message");
 })
 
 app.get("/failed", (req, res) => {
     res.render("failed");
+})
+
+app.get("/admin", requireLogin, (req, res) => {
+    const uid = req.session.user_id;
+    User.findById(uid, (err, docs)=>{
+        if(docs.isAdmin === true){
+            User.find({}, (err, userdocs)=>{
+                res.render("admin", {userdocs});
+            })
+            
+        }else{
+            res.render("message", {msgcode: "7"});
+        }
+    })
 })
 
 app.get("/url", requireLogin, (req, res) => {
@@ -120,16 +134,13 @@ app.get("/url", requireLogin, (req, res) => {
             res.render("url", { username: docs.username, formids: docs.formsid });
         }
         else {
-            res.render("message", {mgscode: "1"});
-            // res.send("something wrong in /url");
+            res.render("message", { msgcode: "1" });
         }
     })
 })
 
 app.post("/login", async (req, res) => {
-    // const { username, password } = req.body;
-    const username = "anubhav";
-    const password = "anubhav";
+    const { username, password } = req.body;
     const foundUser = await User.findAndValidate(username, password)
     if (foundUser) {
         req.session.user_id = foundUser._id;
@@ -137,8 +148,7 @@ app.post("/login", async (req, res) => {
         delete req.session.returnTo;
         res.redirect(redirectUrl);
     } else {
-        res.render("message", {mgscode: "2"});
-        // res.send("Incorrent usernam/password")
+        res.render("message", { msgcode: "2" });
     }
 })
 
@@ -164,8 +174,7 @@ app.post("/register", (req, res) => {
     }
     User.find({ username: username }, async (err, docs) => {
         if (docs.length) {
-            res.render("message", {mgscode: "3"});
-            // res.send("user already registered");
+            res.render("message", { msgcode: "3" });
         } else {
             const user = new User({
                 username, password, name, email, phoneNum, isAdmin
@@ -175,7 +184,6 @@ app.post("/register", (req, res) => {
             res.redirect("/");
         }
     })
-
 })
 
 app.get("/create-forms", requireLogin, (req, res) => {
@@ -223,16 +231,24 @@ app.get("/form/:user", requireLogin, (req, res) => {
     })
 })
 
-app.post("/form/delete/:fid", (req, res) => {
+app.post("/form/delete/:fid", requireLogin, (req, res) => {
     const fid = req.params.fid;
-    console.log(fid);
+    const uidd = req.session.user_id;
     Form.findOneAndDelete({ formid: fid }, (err, docs) => {
-        if (!err) {
-            res.render("message", {mgscode: "4"});
-            // res.send("form deleted");
+        if (docs) {
+            User.findByIdAndUpdate(uidd, {
+                $pull: {
+                    formsid: fid
+                }
+            }, (err, userdocs) => {
+                if (userdocs) {
+                    res.render("message", { msgcode: "4" });
+                } else {
+                    res.render("message", { msgcode: "5" });
+                }
+            })
         } else {
-            res.render("message", {mgscode: "5"});
-            // res.send("cannot delete the form");
+            res.render("message", { msgcode: "5" });
         }
     })
 })
@@ -301,18 +317,11 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 })
 app.get("*", (req, res) => {
-    res.render("message", {mgscode: "6"});
-    // res.send("Error 404")
+    res.render("message", { msgcode: "6" });
 });
 
 app.listen(3000, () => {
     console.log("On Port 3000!!");
 })
 
-
-/* ToDos
-Add login system, let logged in user create unlimited forms
-dont let non logged in user create a form
-add admin panel
-show forms of certain user and let him delete it or edit it
-*/
+// change all url to current domain
