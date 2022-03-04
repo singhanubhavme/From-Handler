@@ -55,30 +55,24 @@ app.use((req, res, next) => {
 });
 
 
-// function sendMail(data, emailAdd, username) {
-//     const transporter = nodemailer.createTransport({
-//         service: 'gmail',
-//         host: 'smtp.gmail.com',
-//         auth: {
-//             user: "form.handler.app@gmail.com",
-//             pass: process.env.EMAIL_PASS,
-//         },
-//     });
-
-//     const mailOptions = {
-//         from: "form.handler.app@gmail.com",
-//         to: emailAdd,
-//         subject: `Form Data for ${username}`,
-//         html: data
-//     };
-//     transporter.sendMail(mailOptions);
-//     transporter.close();
-// }
-
 function sendMail(data, emailAdd, username) {
-    console.log("data : ", data);
-    console.log("email add : ", emailAdd);
-    console.log("username : ", username);
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        auth: {
+            user: "form.handler.app@gmail.com",
+            pass: process.env.EMAIL_PASS,
+        },
+    });
+
+    const mailOptions = {
+        from: "form.handler.app@gmail.com",
+        to: emailAdd,
+        subject: `Form Data for ${username}`,
+        html: data
+    };
+    transporter.sendMail(mailOptions);
+    transporter.close();
 }
 
 app.get("/", (req, res) => {
@@ -115,14 +109,14 @@ app.get("/failed", (req, res) => {
 
 app.get("/admin", requireLogin, (req, res) => {
     const uid = req.session.user_id;
-    User.findById(uid, (err, docs)=>{
-        if(docs.isAdmin === true){
-            User.find({}, (err, userdocs)=>{
-                res.render("admin", {userdocs});
+    User.findById(uid, (err, docs) => {
+        if (docs.isAdmin === true) {
+            User.find({}, (err, userdocs) => {
+                res.render("admin", { userdocs });
             })
-            
-        }else{
-            res.render("message", {msgcode: "7"});
+
+        } else {
+            res.render("message", { msgcode: "7" });
         }
     })
 })
@@ -160,7 +154,7 @@ app.post("/contact", (req, res) => {
         mailData += data[i][0].toUpperCase() + " : " + data[i][1] + "<br>";
     }
     mailData += `---------------------------<br>`;
-    sendMail(mailData, "singhanubhav58@gmail.com", "Form Handler");
+    sendMail(mailData, "admin@formhandler.cf", "Form Handler");
     res.render("success");
 })
 
@@ -193,7 +187,7 @@ app.get("/create-forms", requireLogin, (req, res) => {
 app.post("/create-forms", requireLogin, (req, res) => {
     let { formTitle, redirectURL } = req.body;
     if (redirectURL === "") {
-        redirectURL = "https://form-handler.singhanubhav.me/success";
+        redirectURL = "https://formhandler.cf/success";
     }
     const shortid = new ShortUniqueId({ length: 10 });
     let uuid = shortid();
@@ -320,8 +314,6 @@ app.get("*", (req, res) => {
     res.render("message", { msgcode: "6" });
 });
 
-app.listen(3000, () => {
-    console.log("On Port 3000!!");
+app.listen(process.env.PORT, () => {
+    console.log("Server Started!!");
 })
-
-// change all url to current domain

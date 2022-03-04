@@ -31,6 +31,7 @@
         <li>Save the form action URL given to you, which has your username and unique form id.</li>
         <li>Create a HTML form normally as you do on your static website.</li>
         <li>Add action attribute to HTML form and give its value as the link given to you in 6th step.</li>
+        <li>Only create a post request from your website while creating your form, set method="post" in the form.</li>
         <li>You can check all the forms you have created on your website on <a class="btn btn-success text-white"
                 href="/form/<%= currentUsername %>">My Forms</a> Page. </li>
         <li>If you get stuck somewhere just send a message on <a class="btn text-white btn-success"
@@ -39,10 +40,10 @@
     <br>
     <hr class="dotted-hr">
     <h2>Example of the code that you have to use.</h2>
-    <h5>Replace /form-handler with the url you copied from step 6, and change the form according to your needs.</h5>
+    <h5>Replace https://formhandler.cf/form-handler with the url you copied from step 6, and change the form according to your needs.</h5>
     <pre>
         <code data-language="html">
-    <form action="/form-handler" method="post">
+    <form action="https://formhandler.cf/form-handler" method="post">
         <label for="fname">First Name</label>
         <input type="text" name="fname" id="fname">
         <label for="lname">Last name</label>

@@ -23,7 +23,7 @@
                     <p class="card-text">Form Unique ID : <%= docs[i].formid %></p>
                     <p class="card-text">Redirect URL : <br> <%= docs[i].redirectUrl %></p>
                     <p class="card-text">Action Attribute URL : <br>
-                        https://localhost/<%= docs[i].username %>/<%= docs[i].formid %></p>
+                        https://formhandler.cf/<%= docs[i].username %>/<%= docs[i].formid %></p>
                     
                     <form class="d-inline-block" action="/form/delete/<%= docs[i].formid %>" method="post">
                         <button class="btn btn-danger" type="submit">Delete</button>
