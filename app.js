@@ -272,7 +272,7 @@ app.get("/form/:user/:formid", requireLogin, (req, res) => {
     })
 })
 
-app.post("/form/:user/:formid", (req, res) => {
+app.post("/:user/:formid", (req, res) => {
     const username = req.params.user;
     const formid = req.params.formid;
     User.findOne({ username }, (err, userdocs) => {
