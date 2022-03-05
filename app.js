@@ -225,7 +225,7 @@ app.get("/form/:user", requireLogin, (req, res) => {
     })
 })
 
-app.post("/form/delete/:fid", requireLogin, (req, res) => {
+app.post("/form/delete/:fid", (req, res) => {
     const fid = req.params.fid;
     const uidd = req.session.user_id;
     Form.findOneAndDelete({ formid: fid }, (err, docs) => {
@@ -247,7 +247,7 @@ app.post("/form/delete/:fid", requireLogin, (req, res) => {
     })
 })
 
-app.get("/form/:user/:formid", requireLogin, (req, res) => {
+app.get("/form/:user/:formid", (req, res) => {
     const username = req.params.user;
     const formid = req.params.formid;
     User.findOne({ username }, (err, docs) => {
@@ -272,7 +272,7 @@ app.get("/form/:user/:formid", requireLogin, (req, res) => {
     })
 })
 
-app.post("/:user/:formid", (req, res) => {
+app.post("/form/:user/:formid", (req, res) => {
     const username = req.params.user;
     const formid = req.params.formid;
     User.findOne({ username }, (err, userdocs) => {
@@ -281,7 +281,7 @@ app.post("/:user/:formid", (req, res) => {
                 Form.findOne({ formid }, (err, docs) => {
                     if (docs) {
                         const data = Object.entries(req.body);
-                        let mailData = `Form Submission for ${username} `;
+                        let mailData = `Form Submission for ${username} on ${formid}`;
                         mailData += `<br>---------------------------<br>`;
                         for (let i = 0; i < data.length; i++) {
                             mailData += data[i][0].toUpperCase() + " : " + data[i][1] + "<br>";

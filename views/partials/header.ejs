@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 
+  Hello there, this website is based on EJS, Express on Node and MongoDB
+  Developed by **Anubhav Singh**
+  Mail me at admin@formhandler.cf
+ -->
 
 <head>
   <meta charset="UTF-8">
@@ -42,7 +47,7 @@
         <li class="nav-item"><a href="/form/<%= currentUsername %>" class="px-4 nav-link text-light item-5">My Forms</a>
         </li>
         <% if(currentUsername == "anubhav") { %>
-          <li class="nav-item"><a href="/admin" class="px-4 nav-link text-light item-7">Admin</a></li>
+        <li class="nav-item"><a href="/admin" class="px-4 nav-link text-light item-7">Admin</a></li>
         <% } %>
         <li class="nav-item"><a href="/logout" class="px-4 nav-link text-light">Logout</a></li>
         <% } else { %>

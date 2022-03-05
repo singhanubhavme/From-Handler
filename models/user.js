@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String
     },
-    name : {
+    name: {
         type: String
     },
     email: {
@@ -15,11 +15,11 @@ const userSchema = new mongoose.Schema({
     },
     phoneNum: {
         type: String
-    }, 
-    formsid:{
-        type:[String]
     },
-    isAdmin:{
+    formsid: {
+        type: [String]
+    },
+    isAdmin: {
         type: Boolean
     }
 })

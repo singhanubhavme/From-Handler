@@ -1,6 +1,6 @@
 <%- include("partials/header.ejs") -%>
 <style>
-    .card{
+    .card {
         border: 2px solid white !important;
     }
 </style>
@@ -18,23 +18,23 @@
                 <h5 class="card-text"><b>Name</b> : <%= userdocs[i].name %></h5>
                 <h5 class="card-text"><b>Email</b> : <%= userdocs[i].email %></h5>
                 <h5 class="card-text"><b>Phone Number</b> : <%= userdocs[i].phoneNum %></h5>
-                <h5 class="card-text"><b>Forms IDs</b> : 
+                <h5 class="card-text"><b>Forms IDs</b> :
                     <% for(let j=0 ; j < userdocs[i].formsid.length ; j++) { %>
                     <%= userdocs[i].formsid[j] %>,
                     <% } %>
                 </h5>
                 <% if(userdocs[i].isAdmin === true) { %>
-                    <h5 class="card-title text-success"><%= userdocs[i].name %> is an Admin</h5>
+                <h5 class="card-title text-success"><%= userdocs[i].name %> is an Admin</h5>
                 <% } else { %>
-                    <h5 class="card-title text-danger"><%= userdocs[i].name %> is not an Admin</h5>
+                <h5 class="card-title text-danger"><%= userdocs[i].name %> is not an Admin</h5>
                 <% } %>
             </div>
         </div>
         <br>
-    <% } %>
-        
+        <% } %>
 
-        
+
+
     </div>
 </div>
 <hr class="dotted-hr">
