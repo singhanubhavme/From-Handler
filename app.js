@@ -154,7 +154,7 @@ app.post("/contact", (req, res) => {
         mailData += data[i][0].toUpperCase() + " : " + data[i][1] + "<br>";
     }
     mailData += `---------------------------<br>`;
-    sendMail(mailData, "admin@formhandler.cf", "Form Handler");
+    sendMail(mailData, "admin@formhandler.xyz", "Form Handler");
     res.render("success");
 })
 
@@ -187,7 +187,7 @@ app.get("/create-forms", requireLogin, (req, res) => {
 app.post("/create-forms", requireLogin, (req, res) => {
     let { formTitle, redirectURL } = req.body;
     if (redirectURL === "") {
-        redirectURL = "https://formhandler.cf/success";
+        redirectURL = "https://formhandler.xyz/success";
     }
     const shortid = new ShortUniqueId({ length: 10 });
     let uuid = shortid();
