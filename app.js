@@ -75,37 +75,19 @@ function sendMail(data, emailAdd, username) {
     transporter.close();
 }
 
-app.get("/", (req, res) => {
-    res.render("home");
-})
+app.get("/", (req, res) => res.render("home"))
 
-app.get("/success", (req, res) => {
-    res.render("success");
-})
+app.get("/success", (req, res) => res.render("success"))
 
-app.get("/contact", (req, res) => {
-    res.render("contact");
-})
+app.get("/contact", (req, res) => res.render("contact"))
 
-app.get("/how-to-use", (req, res) => {
-    res.render("how-to-use");
-})
+app.get("/how-to-use", (req, res) => res.render("how-to-use"))
 
-app.get("/register", (req, res) => {
-    res.render("register");
-})
+app.get("/register", (req, res) => res.render("register"))
 
-app.get("/login", (req, res) => {
-    res.render("login");
-})
+app.get("/login", (req, res) => res.render("login"))
 
-app.get("/message", (req, res) => {
-    res.render("message");
-})
-
-app.get("/failed", (req, res) => {
-    res.render("failed");
-})
+app.get("/failed", (req, res) => res.render("failed"))
 
 app.get("/admin", requireLogin, (req, res) => {
     const uid = req.session.user_id;
@@ -310,10 +292,6 @@ app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 })
-app.get("*", (req, res) => {
-    res.render("message", { msgcode: "6" });
-});
+app.get("*", (req, res) => res.render("message", { msgcode: "6" }));
 
-app.listen(process.env.PORT, () => {
-    console.log("Server Started!!");
-})
+app.listen(process.env.PORT, () => console.log("Server Started!!"))
