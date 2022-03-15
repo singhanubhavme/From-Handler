@@ -60,13 +60,13 @@ function sendMail(data, emailAdd, username) {
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-            user: "form.handler.app@gmail.com",
+            user: process.env.EMAIL,
             pass: process.env.EMAIL_PASS,
         },
     });
 
     const mailOptions = {
-        from: "form.handler.app@gmail.com",
+        from: process.env.EMAIL,
         to: emailAdd,
         subject: `Form Data for ${username}`,
         html: data
