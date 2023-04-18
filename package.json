@@ -4,7 +4,7 @@
   "description": "Now embed forms in static website without any backend",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anubhav Singh",
