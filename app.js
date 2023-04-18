@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const app = express();
-const session = require('express-session');
+const session = require('cookie-session');
 const dotenv = require('dotenv');
 dotenv.config();
 const ShortUniqueId = require('short-unique-id');
