@@ -285,7 +285,7 @@ app.post('/form/:user/:formid', async (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
-  req.session.destroy();
+  req.session = null;
   res.redirect('/');
 });
 app.get('*', (req, res) => res.render('message', { msgcode: '6' }));
